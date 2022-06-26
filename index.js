@@ -21,6 +21,11 @@ app.get("/", function (req, res) {
 // your first API endpoint... 
 app.get("/api/:date_string", function (req, res) {
   let date_string = req.params.date_string;
+
+  if (parseInt(date_string) > 10000){
+      let unixTime = new Date(parseInt(date_string));
+      res.json({unix:  unixTime.getTime(), utc:  unixTime.toGMTString() });
+  }
   let date = new Date(date_string);
   if(date == "Invalid Date"){
     res.json({"error": "Invalid Date"});
