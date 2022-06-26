@@ -29,7 +29,10 @@ app.get("/api/:date_string", function (req, res) {
   }
 });
 
-
+app.get("/api", function (req, res) {
+  let now = new Date();
+    res.json({unix: now.getTime(), utc: now.toGMTString() });
+});
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT || 3000, function () {
